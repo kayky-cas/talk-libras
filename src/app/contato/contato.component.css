@@ -1,0 +1,9 @@
+main {
+  height: 75vh;
+}
+
+form {
+  width: 60%;
+  position: relative;
+  left: 20%;
+}

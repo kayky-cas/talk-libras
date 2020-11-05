@@ -1,0 +1,44 @@
+<app-header></app-header>
+<app-vlibras></app-vlibras>
+
+<main>
+  <button class="btn btn-success" id="botaoTroca" (click)="showHide()" *ngIf="mostrando" ><img src="../../assets/images/mic-icon.png" id="botaoTrocaImg"/></button>
+  <button class="btn btn-success" id="botaoTroca" (click)="showHide()" *ngIf="!mostrando" ><img src="../../assets/images/audio-icon.png" id="botaoTrocaImg"/></button>
+  <div class="content border" *ngIf="mostrando" >
+    <p id="tTrad" class="text-secondary">Selecione o áudio no botão abaixo</p>
+
+    <div class="trad">
+      <form class="was-validated formI">
+        <div class="custom-file mb-3 inp">
+          <input type="file" (change)="inputFileChange($event)" accept=".ogg" class="custom-file-input" id="inputFile" required>
+          <label id="labelAudio" class="custom-file-label" for="inputFile">Escolha o áudio...</label>
+        </div>
+
+      </form>
+
+      <button type="button" (click)="enviar()" class="btn btn-primary">Enviar</button>
+
+
+    </div>
+
+    <p *ngIf="frase" [innerHTML]="frase" class="border text-libras"></p>
+
+  </div>
+
+  <div class="content border"  *ngIf="!mostrando">
+    <p id="tTrad" class="text-secondary">Selecione o botão azul para falar e o botão vermelho para parar </p>
+
+    <div class="trad">
+      <button class="btn btn-primary" style="margin: 10px;" (click)="startService()">Falar</button>
+      <button class="btn btn-danger" style="margin: 10px;" (click)="stopService()">Parar</button>
+
+    </div>
+
+    <p *ngIf="service.text"  [innerHTML]="service.text" class="border text-libras"></p>
+
+  </div>
+
+
+
+</main>
+<app-footer></app-footer>
