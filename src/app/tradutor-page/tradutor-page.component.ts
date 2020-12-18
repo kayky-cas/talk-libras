@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SpeechToTextService } from '../speech-to-text.service';
@@ -9,6 +9,8 @@ import { SpeechToTextService } from '../speech-to-text.service';
   styleUrls: ['./tradutor-page.component.css']
 })
 export class TradutorPageComponent implements OnInit {
+
+  @ViewChild('textareaLibras') textareaLibras: ElementRef;
 
   mostrando = true;
 
@@ -60,6 +62,21 @@ export class TradutorPageComponent implements OnInit {
 
     }
 
+  }
+  editar(): void {
+    const botao = document.querySelector('#btnEditSave');
+    if (botao.innerHTML === 'Editar') {
+      botao.innerHTML = 'Salvar';
+      (document.querySelector('.text-libras') as HTMLElement).style.display = 'none';
+      this.textareaLibras.nativeElement.style.display = 'block';
+    }
+    else {
+      botao.innerHTML = 'Editar';
+      (document.querySelector('.text-libras') as HTMLElement).style.display = 'block';
+      this.textareaLibras.nativeElement.style.display = 'none';
+      let frase = this.textareaLibras.nativeElement.value;
+      document.querySelector('.text-libras').innerHTML = frase;
+    }
   }
 
   enviar(): void {

@@ -4,28 +4,28 @@
 <main>
   <button class="btn btn-success" id="botaoTroca" (click)="showHide()" *ngIf="mostrando" ><img src="../../assets/images/mic-icon.png" id="botaoTrocaImg"/></button>
   <button class="btn btn-success" id="botaoTroca" (click)="showHide()" *ngIf="!mostrando" ><img src="../../assets/images/audio-icon.png" id="botaoTrocaImg"/></button>
-  <div class="content border" *ngIf="mostrando" >
+  <div class="container border" *ngIf="mostrando" >
+
     <p id="tTrad" class="text-secondary">Selecione o áudio no botão abaixo</p>
 
-    <div class="trad">
-      <form class="was-validated formI">
-        <div class="custom-file mb-3 inp">
-          <input type="file" (change)="inputFileChange($event)" accept=".ogg" class="custom-file-input" id="inputFile" required>
-          <label id="labelAudio" class="custom-file-label" for="inputFile">Escolha o áudio...</label>
-        </div>
 
-      </form>
+    <form class="was-validated formI">
+      <div class="custom-file mb-3 inp">
+        <!--<input type="file" (change)="inputFileChange($event)" accept=".ogg" class="custom-file-input" id="inputFile" required>
+        <label id="labelAudio" class="custom-file-label" for="inputFile">Escolha o áudio...</label>-->
+        <input type="file" (change)="inputFileChange($event)" accept=".ogg" class="" id="inputFile" title="" value="" required>
+        <label id="labelAudio" class="btn btn-info btn-block btn-lg" for="inputFile">Escolha o áudio...</label>
+      </div>
 
-      <button type="button" (click)="enviar()" class="btn btn-primary">Enviar</button>
+    </form>
 
-
-    </div>
+    <button type="button" (click)="enviar()" class="btn btn-primary">Enviar</button>
 
     <p *ngIf="frase" [innerHTML]="frase" class="border text-libras"></p>
 
   </div>
 
-  <div class="content border"  *ngIf="!mostrando">
+  <div class="container border"  *ngIf="!mostrando">
     <p id="tTrad" class="text-secondary">Selecione o botão azul para falar e o botão vermelho para parar </p>
 
     <div class="trad">
@@ -35,6 +35,9 @@
     </div>
 
     <p *ngIf="service.text"  [innerHTML]="service.text" class="border text-libras"></p>
+    <input #textareaLibras type="text" value="{{ service.text }}" *ngIf="service.text" class="border textareaLibras" style="display: none;">
+    <button *ngIf="service.text" class="btn btn-primary" id="btnEditSave" style="margin: 10px;" (click)="editar()">Editar</button>
+
 
   </div>
 
